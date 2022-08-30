@@ -4,11 +4,11 @@ from datetime import date as d
 import hashlib
 
 db = mysql.connector.connect(
-    host = "194.195.113.147",
-    user = "sqluser",
-    passwd = "Adnan$12",
+    host = "",
+    user = "",
+    passwd = "",
     auth_plugin = "mysql_native_password",
-    database = "testpython"
+    database = ""
     #above line is commented if the database is not created
 )
 
