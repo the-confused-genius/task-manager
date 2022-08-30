@@ -18,7 +18,7 @@
     <br>
     
     <div class="indexforms">
-        <form action="{{url_for('addtask')}}" method="POST">
+        <form action="{{url_for('addtask')}}" method="GET">
             <button class="btn btn-success" type="submit">Add new Task</button>
         </form>
         <form action="{{url_for('deleteeachtask')}}" method="POST">
@@ -105,7 +105,7 @@
         })
     .then(result => {
       if(result.isConfirmed){
-        return window.location.replace("{{url_for('login')}}")
+        return window.location.replace("{{url_for('logout')}}")
       }
       });
     });
