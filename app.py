@@ -4,9 +4,9 @@ from datetime import timedelta, date as d
 import hashlib
 
 db = mysql.connector.connect(
-    host = "localhost",
+    host = "194.195.113.147",
     user = "sqluser",
-    passwd = "password",
+    passwd = "Adnan$12",
     auth_plugin = "mysql_native_password",
     database = "testpython"
     #above line is commented if the database is not created
