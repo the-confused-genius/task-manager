@@ -30,20 +30,24 @@ def login():
             output = "There seems to be a problem with the password"
             return render_template('login.html',output=output)
         cursor.execute(f'select count(*),userid,username from user where password = "{passw}" and email = "{email}" group by userid, username limit 1')
-        var = cursor.fetchall()            
-        if var[0][0]==1:
-            session['userid'] = var[0][1]
-            session['username'] = var[0][2]
-            output = ""
-            return redirect(url_for('index'))
-        else :
-            cursor.execute(f'select count(*),userid from user where email = "{email}" group by userid limit 1')
-            var = cursor.fetchall() 
-            if var[0][0]== 1:
-                output = "The Password is incorrect"
+        var = cursor.fetchall() 
+        try:           
+            if var[0][0]==1:
+                session['userid'] = var[0][1]
+                session['username'] = var[0][2]
+                output = ""
+                return redirect(url_for('index'))
+            else :
+                cursor.execute(f'select count(*),userid from user where email = "{email}" group by userid limit 1')
+                var = cursor.fetchall() 
+                if var[0][0]== 1:
+                    output = "The Password is incorrect"
+                    return render_template('login.html',output=output)
+                output = "The Account doesn't exist, Try clicking the blue button below 😉"
                 return render_template('login.html',output=output)
-            output = "The Account doesn't exist, Try clicking the blue button below 😉"
-            return render_template('login.html',output=output)         
+        except:  
+            output = "The Email or password is incorrect"
+            return render_template('login.html',output=output)      
     else:
         if 'userid' in session:
              return redirect(url_for('index'))
