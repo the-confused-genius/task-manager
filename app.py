@@ -37,7 +37,7 @@ def login():
             output = ""
             return redirect(url_for('index'))
         else :
-            cursor.execute(f'select count(*) from user where email = "{email}"')
+            cursor.execute(f'select count(*),userid from user where email = "{email}" group by userid limit 1')
             var = cursor.fetchall() 
             if var[0][0]== 1:
                 output = "The Password is incorrect"
