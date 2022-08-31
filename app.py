@@ -29,7 +29,7 @@ def login():
         except:
             output = "There seems to be a problem with the password"
             return render_template('login.html',output=output)
-        cursor.execute(f'select count(*),userid,username from user where password = "{passw}" and email = "{email}"')
+        cursor.execute(f'select count(*),userid,username from user where password = "{passw}" and email = "{email}" group by userid, username limit 1')
         var = cursor.fetchall()            
         if var[0][0]==1:
             session['userid'] = var[0][1]
